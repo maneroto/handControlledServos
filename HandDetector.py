@@ -1,6 +1,6 @@
+from mediapipe.tasks.python.vision.hand_landmarker import HandLandmark, HandLandmarker, HandLandmarkerOptions, HandLandmarkerResult, HandLandmarksConnections
 from mediapipe import Image, ImageFormat
 from mediapipe.tasks.python.vision import RunningMode
-from mediapipe.tasks.python.vision.hand_landmarker import HandLandmark, HandLandmarker, HandLandmarkerOptions, HandLandmarkerResult, HandLandmarksConnections
 from mediapipe.tasks.python import BaseOptions
 from config.settings import MODEL_HAND_DETECTOR, MODEL_HANDS_TO_DETECT
 from cv2 import flip, cvtColor, COLOR_BGR2RGB, line, circle

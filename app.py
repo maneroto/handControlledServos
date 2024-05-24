@@ -8,6 +8,9 @@ def processBluetoothData(data: str):
     print(data)
 
 def otherMain():
+    bluetoothClient = Bluetooth("Raspberry Pi", processBluetoothData)
+
+    bluetoothClient.send("Servo Signaler connected")
     servoSignaler = ServoSignaler([
         13,
         16,
@@ -23,14 +26,19 @@ def otherMain():
         for angle in angles:
             servoSignaler.moveOneServo(angle, angles[angle])
 
+    bluetoothClient.stop()
+
 def main():
     videoCapture = VideoCapture(0)
     handDetector = HandDetector()
-    servosSignaler = ServoSignaler()
-    bluetoothServer = Bluetooth("Raspberry Pi", processBluetoothData, "Servo Signaler")
-
-    bluetoothServer.send("Servo Signaler connected")
-    bluetoothServer.stop()
+    servoSignaler = ServoSignaler([
+        13,
+        16,
+        19,
+        20,
+        21,
+        26
+    ])
 
     while videoCapture.isOpened():
         hasFrame, frame = videoCapture.read()
@@ -63,6 +71,7 @@ def main():
     
     handDetector.close()
     videoCapture.release()
+    servoSignaler.stopAllServos()
     destroyAllWindows()
 
 if __name__ == "__main__":
