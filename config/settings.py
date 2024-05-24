@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MODELS_ROOT = BASE_DIR / 'models'
 MODEL_HAND_DETECTOR = MODELS_ROOT / 'hand_landmarker.task'
 
-MODEL_HANDS_TO_DETECT = 2
+MODEL_HANDS_TO_DETECT = 4
 
 IMAGE_SIZE = (224, 224)
 IMAGE_CHANNELS = 3
