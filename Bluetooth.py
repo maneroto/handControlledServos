@@ -13,7 +13,7 @@ class Bluetooth:
             self.__connection = BluetoothClient(serverName, self.__receive)
             self.__isClient = True
         else :
-            self.__connection = BluetoothServer(self.__receive, power_up_device=True, when_client_connects=self.__notify_connection, when_client_disconnects=self.__notify_connection)
+            self.__connection = BluetoothServer(self.__receive, power_up_device=True, when_client_connects=self.__notify_connection, when_client_disconnects=self.__notify_disconnection)
             self.__isClient = False
 
     def __receive(self, data):
@@ -23,8 +23,11 @@ class Bluetooth:
         if self.__isClient:
             self.__connection.send(data)
 
-    def __notify_connection(self, data):
-        print(data)
+    def __notify_connection(self):
+        print("Device connected")
+
+    def __notify_disconnection(self):
+        print("Device disconnected")
 
     def send(self, data):
         print(f'Sending data from {self.__deviceName}')

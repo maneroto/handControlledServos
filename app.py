@@ -8,7 +8,7 @@ def processBluetoothData(data: str):
     print(data)
 
 def otherMain():
-    servosSignaler = ServoSignaler([
+    servoSignaler = ServoSignaler([
         13,
         16,
         19,
@@ -21,7 +21,7 @@ def otherMain():
 
     if len(angles) == 6:
         for angle in angles:
-            servosSignaler.signalServoByIndex(angle, angles[angle])
+            servoSignaler.moveOneServo(angle, angles[angle])
 
 def main():
     videoCapture = VideoCapture(0)
