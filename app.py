@@ -4,11 +4,30 @@ from Bluetooth import Bluetooth
 
 from cv2 import VideoCapture, flip, cvtColor, COLOR_BGR2RGB, putText, FONT_HERSHEY_SIMPLEX, imshow, waitKey, destroyAllWindows
 
+def processBluetoothData(data: str):
+    print(data)
+
+def otherMain():
+    servosSignaler = ServoSignaler([
+        13,
+        16,
+        19,
+        20,
+        21,
+        26
+    ])
+
+    angles = [0, 45, 90, 135, 180]
+
+    if len(angles) == 6:
+        for angle in angles:
+            servosSignaler.signalServoByIndex(angle, angles[angle])
+
 def main():
     videoCapture = VideoCapture(0)
     handDetector = HandDetector()
     servosSignaler = ServoSignaler()
-    bluetoothServer = Bluetooth("Raspberry Pi", "Servo Signaler")
+    bluetoothServer = Bluetooth("Raspberry Pi", processBluetoothData, "Servo Signaler")
 
     bluetoothServer.send("Servo Signaler connected")
     bluetoothServer.stop()

@@ -1,14 +1,19 @@
-from gpiozero import Servo
+from Servo import Servo
 
 class ServoSignaler:
     __servos: list[Servo]
+    __maxServos: int
 
-    def __init__(self, servos: list[Servo] = []):
+    def __init__(self, servosPins: list[int] = [], maxServos: int = 5) -> None:
+        servos = []
+        for servoPin in servosPins:
+            servos.append(Servo(servoPin))
+        self.__maxServos = maxServos if maxServos >= len(servosPins) else len(servosPins)
         self.__servos = servos
 
     def addServo(self, servoPin: int):
-        if len(self.__servos) >= 5:
-            raise Exception("Cannot add more than 5 servos")
+        if len(self.__servos) >= self.__maxServos:
+            raise Exception(f"Cannot add more than {self.__maxServos} servos")
         
         self.__servos.append(Servo(servoPin))
         return
@@ -23,10 +28,9 @@ class ServoSignaler:
     
     def getServos(self):
         return self.__servos
-    
 
     def signalServo(self, servo: Servo, angle: float):
-        servo.value = angle / 180
+        servo.move(angle)
         return
     
     # Function to signal a servo by its index in the list
