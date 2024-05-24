@@ -57,7 +57,7 @@ class ServoSignaler:
         
         return
     
-    def moveAllServos(self, angle) -> None:
+    def moveAllServos(self, angle: float) -> None:
         for servo in self.__servos:
             self.moveServo(servo, angle)
         return
