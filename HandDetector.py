@@ -1,13 +1,14 @@
 from mediapipe.tasks.python.vision.hand_landmarker import HandLandmark, HandLandmarker, HandLandmarkerOptions, HandLandmarkerResult, HandLandmarksConnections
-from mediapipe import Image, ImageFormat
+from mediapipe.tasks.python.components.containers import NormalizedLandmark
 from mediapipe.tasks.python.vision import RunningMode
 from mediapipe.tasks.python import BaseOptions
-from config.settings import MODEL_HAND_DETECTOR, MODEL_HANDS_TO_DETECT
+from mediapipe import Image, ImageFormat
 from cv2 import flip, cvtColor, COLOR_BGR2RGB, line, circle
-from mediapipe.tasks.python.components.containers import NormalizedLandmark
 from cv2.typing import MatLike
 from typing import List
 from time import time
+
+from config.settings import MODEL_HAND_DETECTOR, MODEL_HANDS_TO_DETECT
 
 FINGER_TIPS = [HandLandmark.INDEX_FINGER_TIP, HandLandmark.MIDDLE_FINGER_TIP, HandLandmark.RING_FINGER_TIP, HandLandmark.PINKY_TIP, HandLandmark.THUMB_TIP]
 

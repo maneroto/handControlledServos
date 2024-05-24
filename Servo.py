@@ -8,6 +8,8 @@ class Servo:
 
     def __init__(self, motorPin: int, frequency: int = 50) -> None:
         self.__pin = motorPin
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(motorPin, GPIO.OUT)
         self.__motor = GPIO.PWM(motorPin, frequency)
         self.__motor.start(self.__home)
 
