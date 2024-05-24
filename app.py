@@ -11,14 +11,7 @@ def otherMain():
     bluetoothClient = Bluetooth("Raspberry Pi", processBluetoothData)
 
     bluetoothClient.send("Servo Signaler connected")
-    servoSignaler = ServoSignaler([
-        13,
-        16,
-        19,
-        20,
-        21,
-        26
-    ])
+    servoSignaler = ServoSignaler([13, 16, 19, 20, 21, 26])
 
     angles = [0, 45, 90, 135, 180]
 
