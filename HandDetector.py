@@ -12,7 +12,7 @@ FINGER_TIPS = [HandLandmark.INDEX_FINGER_TIP, HandLandmark.MIDDLE_FINGER_TIP, Ha
 
 class HandDetector:
     __detector: Hands
-    __result: NamedTuple | None
+    __result: List[List[NormalizedLandmark]] | None
 
     def __init__(self):
         self.__detector = Hands(static_image_mode=False, max_num_hands=MODEL_HANDS_TO_DETECT, min_detection_confidence=0.5, min_tracking_confidence=0.5)
